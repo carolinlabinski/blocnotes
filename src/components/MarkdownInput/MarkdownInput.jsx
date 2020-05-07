@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import noteReducer from "../reducers/noteReducer";
 
-const MarkdownInput = ({ triggerSetNote }) => {
+const MarkdownInput = ({ triggerSetNote, note }) => {
 	const [input, setInput] = useState({});
-	// const [input, dispatch] = useReducer(noteReducer, []);
-	useEffect(() => {
-		localStorage.setItem(input, JSON.stringify(input));
-	}, [input]);
 
 	const handleInputChange = (e) =>
 		setInput({
@@ -14,24 +9,24 @@ const MarkdownInput = ({ triggerSetNote }) => {
 			[e.currentTarget.name]: e.currentTarget.value,
 		});
 
-	// console.log("Input" + input);
-
 	const handleClick = (e) => {
 		e.preventDefault();
 		triggerSetNote(input);
-		// e.preventDefault();
-		// localStorage.setItem("mynote", JSON.stringify(input));
-		console.log("Click happened");
+		localStorage.setItem(input.note, JSON.stringify(input));
+		getAllItems();
 	};
 
-	// localStorage.setItem("mynote", JSON.stringify(input)); // creates a json string to save in local storage
-	// const result = localStorage.getItem("mynote"); //returns json string of object
-	// const jsonResult = JSON.parse(result); // to get back the object
-	// console.log("result string" + result);
-	// console.log("result" + jsonResult);
+	const getAllItems = () => {
+		for (let i = 0; i <= localStorage.length; i++) {
+			console.log("Show keys " + localStorage.key(i));
+			let notekeys = localStorage.getItem(localStorage.key(i));
+			console.log("Keys " + notekeys);
+		}
+	};
 
 	return (
 		<div>
+			<p style={{ marginLeft: "10px" }}> </p>
 			<form>
 				<label>
 					<textarea
@@ -70,22 +65,3 @@ const MarkdownInput = ({ triggerSetNote }) => {
 };
 
 export default MarkdownInput;
-
-{
-	/* <button style={{ marginLeft: "10px" }} className="btn btn-dark">
-Save note
-</button> */
-}
-
-// setNote function
-// const note = { title: "variable", text: "variable" }; //gets infos of the textarea
-// localStorage.setItem("mynote", JSON.stringify(note)); // creates a json string to save in local storage
-// const result = localStorage.getItem('mynote'); //returns json string of object
-// JSON.parse(result); // to get back the object
-
-// const saveNote = (input) => {
-// 	localStorage.setItem("mynote", JSON.stringify(input));
-// 	const result = localStorage.getItem("mynote");
-// 	JSON.parse(result);
-// 	console.log(result);
-// };

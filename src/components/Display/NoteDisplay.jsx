@@ -17,6 +17,15 @@ const NoteDisplay = ({ note, title }) => {
 		};
 	}
 
+	// function getAllItems(i) {
+	// 	for (i = 0; i <= localStorage.length - 1; i++) {
+	// 		let key = sessionStorage.key(i);
+	// 		let val = sessionStorage.getItem(key);
+	// 		console.log(key);
+	// 		console.log(localStorage.length);
+	// 	}
+	// }
+
 	return (
 		<div>
 			<p style={{ marginLeft: "10px" }}> Your better notes</p>
@@ -28,6 +37,7 @@ const NoteDisplay = ({ note, title }) => {
 				style={{ marginLeft: "10px" }}
 				dangerouslySetInnerHTML={createMarkupNote()}
 			/>
+			<p style={{ marginLeft: "10px" }}> All notes:</p>
 		</div>
 	);
 };

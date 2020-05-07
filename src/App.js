@@ -11,7 +11,7 @@ const App = () => {
 			<h1 style={{ marginLeft: "10px" }}>
 				Better bloc notes (try using markup language)
 			</h1>
-			<MarkdownInput triggerSetNote={(input) => setNote(input)} />
+			<MarkdownInput triggerSetNote={(input) => setNote(input)} note={note} />
 			<NoteDisplay note={note.note} title={note.notetitle} />
 		</div>
 	);
