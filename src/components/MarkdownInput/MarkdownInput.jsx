@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import NoteList from "../../components/NoteList";
+// import ListElement from "../../components/ListElement";
+// import NoteDisplay from "../../components/ Display";
 
 const MarkdownInput = ({ triggerSetNote, note }) => {
 	const [input, setInput] = useState({});
@@ -17,16 +20,27 @@ const MarkdownInput = ({ triggerSetNote, note }) => {
 	};
 
 	const getAllItems = () => {
+		var allnotekeys = [];
 		for (let i = 0; i <= localStorage.length; i++) {
 			console.log("Show keys " + localStorage.key(i));
-			let notekeys = localStorage.getItem(localStorage.key(i));
-			console.log("Keys " + notekeys);
+			allnotekeys.push(localStorage.key(i));
+			// let notekeys = JSON.parse(localStorage.getItem(localStorage.key(i)));
+			console.log("Keys list " + allnotekeys);
 		}
+		print(allnotekeys);
+	};
+
+	const print = (allnotekeys) => {
+		let notes = allnotekeys.map((data) => <NoteList notes={data} />);
+		console.log("note" + notes);
 	};
 
 	return (
 		<div>
-			<p style={{ marginLeft: "10px" }}> </p>
+			<NoteList />
+			<p>
+				{note.note} {note.notetitle}
+			</p>
 			<form>
 				<label>
 					<textarea
